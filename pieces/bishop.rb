@@ -8,6 +8,8 @@ class Bishop < Piece
     color == 'black' ? '♝' : '♗'
   end
 
+  protected 
+  
   def move_dirs
     DIAGONAL_DIR
   end

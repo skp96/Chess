@@ -8,6 +8,8 @@ class Queen < Piece
     color == 'black' ? '♛' : '♕'
   end
 
+  protected 
+  
   def move_dirs
     HORIZONTAL_VERTICAL_DIR + DIAGONAL_DIR
   end

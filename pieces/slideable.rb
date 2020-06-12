@@ -24,13 +24,19 @@ module Slideable
   def moves
     moves = []
 
-    moves_dirs.each do |dx, dy|
+    move_dirs.each do |dx, dy|
       moves.concat(grow_unblocked_moves_in_dir(dx, dy))
     end
     moves
   end
 
   private 
+
+  def move_dirs
+    #overwritten by subclass
+    raise NoImplementedError 
+  end
+
   def grow_unblocked_moves_in_dir(dx, dy)
     cur_x, cur_y = pos
     moves = []
