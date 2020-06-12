@@ -4,7 +4,7 @@ require_relative 'stepable'
 class King < Piece
 
   def symbol
-    color === 'black' ? '♚' : '♔'
+    color == 'black' ? '♚' : '♔'
   end
 
 

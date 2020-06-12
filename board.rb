@@ -67,11 +67,11 @@ class Board
 
     rows.each_with_index do |row, row_idx|
       if row_idx == 0 || row_idx == 1
-        8.times {|col_idx| Piece.new('black', self, [row_idx, col_idx])}
+        8.times {|col_idx| Piece.new('white', self, [row_idx, col_idx])}
       end  
 
       if row_idx == 6 || row_idx == 7
-        8.times {|col_idx| Piece.new('white', self, [row_idx, col_idx])}
+        8.times {|col_idx| Piece.new('black', self, [row_idx, col_idx])}
       end
     end
   end
