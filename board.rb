@@ -40,7 +40,7 @@ class Board
     self[start_pos] = sentinel
     self[end_pos] = piece
     piece.pos = end_pos
-    
+
     nil
   end
 
@@ -86,7 +86,7 @@ class Board
       if row_idx == 7 
         8.times do |col_idx|
           piece = back_row[col_idx]
-          piece.new('black', self, [row_idx, col_idx])
+          piece.new(:black, self, [row_idx, col_idx])
         end
       elsif row_idx == 6
         8.times {|col_idx| Pawn.new('black', self, [row_idx, col_idx])}

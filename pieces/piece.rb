@@ -11,5 +11,13 @@ class Piece
     board.add_piece(self, pos)
   end
 
+  def to_s
+    "#{symbol}"
+  end
+
+  def empty?
+    false
+  end
+
 
 end
