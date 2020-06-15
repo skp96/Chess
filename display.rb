@@ -42,5 +42,4 @@ class Display
     end
     {background: color}
   end
-
 end
