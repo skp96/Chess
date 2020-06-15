@@ -22,12 +22,12 @@ module Slideable
   end
 
   def moves
-    moves = []
+    slide_moves = []
 
     move_dirs.each do |dx, dy|
-      moves.concat(grow_unblocked_moves_in_dir(dx, dy))
+      slide_moves.concat(grow_unblocked_moves_in_dir(dx, dy))
     end
-    moves
+    slide_moves
   end
 
   private 
@@ -55,6 +55,7 @@ module Slideable
         break
       end
     end
+    moves
   end
 
 
