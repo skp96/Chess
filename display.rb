@@ -6,13 +6,14 @@ class Display
 
   def initialize(board)
     @board = board
-    @cursor = Cursor.new([0,0], board)
+    @cursor = Cursor.new([7,0], board)
   end
 
   def render
     system('clear')
     puts 'Arrow keys, WASD, or vim to move, and space and enter to confirm move.'
-    color_grid.each {|row| puts row.join}
+    color_grid.each.with_index {|row, idx| puts "#{idx+1} #{row.join}"}
+    puts "   A  B  C  D  E  F  G  H"
   end
 
   private
@@ -34,11 +35,11 @@ class Display
     if cursor.cursor_pos == [row, col] && cursor.selected
       color = :light_yellow
     elsif cursor.cursor_pos == [row, col]
-      color = :light_red
+      color = :blue
     elsif (row + col).even?
-      color = :white
+      color = :black
     else
-      color = :light_blue
+      color = :red
     end
     {background: color}
   end

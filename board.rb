@@ -49,8 +49,6 @@ class Board
     piece = self[pos]
 
     piece.class.name == "NullPiece"
-    end
-
   end
 
   def checkmate?(color)
@@ -61,7 +59,7 @@ class Board
   end
 
   def in_check?(color)
-    king_pos = find_king.pos
+    king_pos = find_king(color).pos
 
     pieces.any? {|piece| piece.color != color && piece.moves.include?(king_pos)}
   end
@@ -100,11 +98,9 @@ class Board
 
   def start_board(fill_board)
     @rows = Array.new(8) {Array.new(8, sentinel)}
-
     back_row = [Rook, Knight, Bishop, Queen, King, Bishop, Knight, Rook]
-
-    if fill_board == true 
-      rows.each_with_index do |row, row_idx|
+    if fill_board == true
+    rows.each_with_index do |row, row_idx|
         if row_idx == 0 
           8.times do |col_idx|
             piece = back_row[col_idx]
@@ -121,7 +117,7 @@ class Board
           end
         elsif row_idx == 6
           8.times {|col_idx| Pawn.new('black', self, [row_idx, col_idx])}
-        end  
+        end
       end
     end
   end
