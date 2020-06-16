@@ -16,10 +16,15 @@ class Game
 
   def play
     until board.checkmate?(current_player)
-      start_pos, end_pos = players[current_player].make_move(board)
-      board.move_piece(current_player, start_pos, end_pos)
-      swap_turns!
-      notify_players
+      begin
+        start_pos, end_pos = players[current_player].make_move(board)
+        board.move_piece(current_player, start_pos, end_pos)
+        swap_turns!
+        notify_players
+      rescue RuntimeError => exception
+        puts "#{exception}"
+        retry
+      end
     end
 
     display.render
