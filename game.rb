@@ -22,7 +22,7 @@ class Game
         swap_turns!
         notify_players
       rescue RuntimeError => exception
-        puts "#{exception}"
+        display.set_notification(exception)
         retry
       end
     end

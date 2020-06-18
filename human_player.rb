@@ -13,9 +13,13 @@ class HumanPlayer  < Player
       if start_pos
         puts "#{color.capitalize}'s turn. Please select where you would like to move to.'"
         end_pos = display.cursor.get_input
+
+        display.reset_notification if end_pos
       else
         puts "#{color.capitalize}'s turn. Please select a piece you would like to move'"
         start_pos = display.cursor.get_input
+
+        display.reset_notification if start_pos
       end
 
     end

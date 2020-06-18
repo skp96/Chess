@@ -35,6 +35,16 @@ class Board
     
   end
 
+  def move_piece!(color, start_pos, end_pos)
+    piece = self[start_pos]
+
+    self[start_pos] = sentinel
+    self[end_pos] = piece
+    piece.pos = end_pos
+
+    nil
+  end
+
   def valid_pos?(pos)
     pos.all? {|coordinate| coordinate.between?(0, 7)}
   end
@@ -80,16 +90,6 @@ class Board
       piece.class.new(piece.color, copy_board, piece.pos)
     end
     copy_board
-  end
-
-  def move_piece!(color, start_pos, end_pos)
-    piece = self[start_pos]
-
-    self[start_pos] = sentinel
-    self[end_pos] = piece
-    piece.pos = end_pos
-
-    nil
   end
 
   private

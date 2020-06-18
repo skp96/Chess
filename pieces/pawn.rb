@@ -10,10 +10,6 @@ class Pawn < Piece
   end
 
   private 
-
-  def at_start_row?
-    pos[0] == (color == 'black') ? 6 : 1
-  end
   
   def forward_dir
     color == 'black' ? -1 : 1
@@ -29,7 +25,9 @@ class Pawn < Piece
     end
 
     second_step = [(forward_dir * 2) + curr_x, curr_y]
-    steps << second_step if at_start_row? && board.empty?(second_step) && board.valid_pos?(second_step)
+    at_start_row = pos[0] == (color == 'black') ? 6 : 1
+
+    steps << second_step if at_start_row && board.empty?(second_step)
 
     steps
 
@@ -38,11 +36,12 @@ class Pawn < Piece
   def side_attacks
     attacks = []
     curr_x, curr_y = pos
-    side_attack_dirs = [[forward_dir, -1], [forward_dir, 1]]
+    side_moves = [[curr_x + forward_dir, curr_y - 1], [curr_x + forward_dir, curr_y + 1]]
 
-    side_attack_dirs.each do |dx, dy|
-      new_pos = [curr_x + dx, curr_y + dy]
-      attacks << pos if board.valid_pos?(new_pos) && !board.empty?(new_pos) && board[new_pos].color != color
+    side_moves.each do |new_move|
+      next false if !board.valid_pos?(new_move)
+      next false if board.empty?(new_move)
+      attacks << new_move if board[new_move].color != color
     end
     attacks
   end

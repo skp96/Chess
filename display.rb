@@ -2,11 +2,12 @@ require 'colorize'
 require_relative 'cursor'
 
 class Display 
-  attr_reader :board, :cursor
+  attr_reader :board, :cursor, :error_notification
 
   def initialize(board)
     @board = board
     @cursor = Cursor.new([7,0], board)
+    @error_notification = ''
   end
 
   def render
@@ -14,6 +15,17 @@ class Display
     puts 'Arrow keys, WASD, or vim to move, and space and enter to confirm move.'
     color_grid.each.with_index {|row, idx| puts "#{idx+1} #{row.join}"}
     puts "   A  B  C  D  E  F  G  H"
+
+    puts error_notification
+
+  end
+
+  def set_notification(message) 
+    @error_notification = message
+  end
+
+  def reset_notification
+    @error_notification = ''
   end
 
   private
